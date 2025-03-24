@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+sysmon_sdk/__init__.py
+sysmon_sdk/cli.py
+sysmon_sdk/config.json
+sysmon_sdk/config.py
+sysmon_sdk/core.py
+sysmon_sdk.egg-info/PKG-INFO
+sysmon_sdk.egg-info/SOURCES.txt
+sysmon_sdk.egg-info/dependency_links.txt
+sysmon_sdk.egg-info/entry_points.txt
+sysmon_sdk.egg-info/top_level.txt
+tests/test_core.py

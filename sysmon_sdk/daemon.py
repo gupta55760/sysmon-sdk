@@ -47,7 +47,7 @@ class SysMonDaemonUDS:
             time.sleep(self.interval)
 
     def handle_client(self, conn):
-        logging.info(f"Client connected")
+        logging.info("Client connected")
         try:
             while True:
                 data = conn.recv(1024)
@@ -57,11 +57,16 @@ class SysMonDaemonUDS:
                 logging.info(f"Received: {message}")
                 response = f"Processed: {message}".encode()
                 conn.sendall(response)
+
+                if message == "shutdown":
+                    logging.info("Shutdown command received. Initiating shutdown...")
+                    self.running = False
+                    break
         except Exception as e:
             logging.error(f"Client error: {e}")
         finally:
             conn.close()
-            logging.info(f"Client disconnected")
+            logging.info("Client disconnected")
 
     def write_pid_file(self):
         try:
@@ -70,7 +75,6 @@ class SysMonDaemonUDS:
         except Exception as e:
             logging.error(f"Failed to write PID file: {e}")
 
-
     def remove_pid_file(self):
         try:
             if os.path.exists(self.pid_file):
@@ -78,10 +82,7 @@ class SysMonDaemonUDS:
         except Exception as e:
             logging.error(f"Failed to remove PID file: {e}")
 
-
-
     def socket_server(self):
-        # Remove old socket if exists
         if os.path.exists(self.socket_path):
             os.remove(self.socket_path)
 
@@ -92,14 +93,14 @@ class SysMonDaemonUDS:
             while self.running:
                 try:
                     conn, _ = s.accept()
-                    t = threading.Thread(target=self.handle_client, args=(conn,))
-                    t.daemon = True
-                    t.start()
+                    self.handle_client(conn)
                 except Exception as e:
                     logging.error(f"Socket error: {e}")
 
+        logging.info("Exiting socket server loop")
         if os.path.exists(self.socket_path):
             os.remove(self.socket_path)
+        self.stop()
 
     def stop(self, signum=None, frame=None):
         logging.info("Shutting down daemon...")
@@ -107,20 +108,16 @@ class SysMonDaemonUDS:
         self.remove_pid_file()
         sys.exit(0)
 
-
     def check_if_already_running(self):
         if os.path.exists(self.pid_file):
             with open(self.pid_file) as f:
                 pid = int(f.read())
             try:
-                os.kill(pid, 0)  # check if process is alive
+                os.kill(pid, 0)
                 print(f"Daemon already running with PID {pid}")
                 sys.exit(1)
             except ProcessLookupError:
-                # Stale PID file
                 self.remove_pid_file()
-
-
 
     def run(self):
         self.check_if_already_running()

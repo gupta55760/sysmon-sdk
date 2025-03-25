@@ -1,0 +1,13 @@
+[run]
+branch = True
+parallel = True
+concurrency = thread
+source = sysmon_sdk
+omit =
+    */tests/*
+    */__init__.py
+    */config.json
+
+[report]
+show_missing = True
+

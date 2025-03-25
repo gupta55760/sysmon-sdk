@@ -5,7 +5,7 @@ description = "Python SDK and CLI to interact with the sysmon daemon"
 authors = [{name="Arun Gupta", email="arun_o_gupta@gmail.com"}]
 readme = "README.md"
 requires-python = ">=3.7"
-dependencies = []
+dependencies = [psutil]
 
 [tool.setuptools.package-data]
 "sysmon_sdk" = ["config.json"]

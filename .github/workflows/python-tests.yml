@@ -1,14 +1,8 @@
-name: Run Python Tests
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      UPLOAD_ARTIFACT: false  # set to true if you want to enable artifact upload
     strategy:
       matrix:
         python-version: [3.12, 3.13]
@@ -40,12 +34,10 @@ jobs:
       - name: Generate HTML coverage report
         run: coverage html
 
-      # - name: Upload coverage report
-      #   uses: actions/upload-artifact@v3.1.3
-      #   with:
-      #     name: htmlcov
-      #     path: htmlcov
+      - name: Upload coverage report (conditionally)
+        if: env.UPLOAD_ARTIFACT == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: htmlcov
+          path: htmlcov
 
-      - name: Upload coverage report
-        run: |
-          echo "Skipping upload for now due to GitHub issue"

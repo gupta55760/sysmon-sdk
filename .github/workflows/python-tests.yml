@@ -16,6 +16,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Start sysmon daemon
+      run: |
+        python sysmon_sdk/daemon.py &
+        sleep 2  # Give it time to bind the socket
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:

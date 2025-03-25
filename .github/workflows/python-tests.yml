@@ -10,6 +10,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      UPLOAD_ARTIFACT: false  # set to true if you want to enable artifact upload
     strategy:
       matrix:
         python-version: [3.12, 3.13]

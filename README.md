@@ -1,5 +1,10 @@
 # sysmon_sdk
 
+![Build](https://github.com/gupta55760/sysmon-sdk/actions/workflows/python-tests.yml/badge.svg)
+
+A lightweight Python system monitoring SDK and CLI...
+
+
 A lightweight Python system monitoring SDK and CLI that communicates with a background daemon process via Unix Domain Sockets (UDS). It lets users query system metrics like CPU and memory, and control the daemon using simple CLI commands.
 
 ---

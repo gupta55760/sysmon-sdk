@@ -1,6 +1,7 @@
 # sysmon_sdk
 
 ![Build](https://github.com/gupta55760/sysmon-sdk/actions/workflows/python-tests.yml/badge.svg)
+![Coverage](coverage.svg)
 
 A lightweight Python system monitoring SDK and CLI...
 

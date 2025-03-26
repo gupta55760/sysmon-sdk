@@ -3,6 +3,8 @@ name: Run Python Tests
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'coverage.svg'
   pull_request:
     branches: [ main ]
 

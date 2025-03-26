@@ -23,5 +23,8 @@ coverage combine
 echo "[*] Generating HTML report..."
 coverage html
 
+echo "[*] Generating coverage badge..."
+coverage-badge -o coverage.svg -f
+
 open htmlcov/index.html
 

@@ -1,3 +1,3 @@
 include README.md
 include pyproject.toml
-include sysmon_sdk/config.json
+exclude sysmon_sdk/config.json

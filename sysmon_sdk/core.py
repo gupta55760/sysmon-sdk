@@ -1,13 +1,13 @@
 import socket
 from .config import load_config
 
-_config = load_config()
-SOCKET_PATH = _config.get("socket_path", "/tmp/sysmon.sock")
+def get_socket_path():
+    return load_config().get("socket_path", "/tmp/sysmon.sock")
 
 def send_command(message: str) -> str:
     try:
         with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as client:
-            client.connect(SOCKET_PATH)
+            client.connect(get_socket_path())
             client.sendall(message.encode())
             return client.recv(1024).decode()
     except FileNotFoundError:

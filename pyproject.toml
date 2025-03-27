@@ -1,6 +1,6 @@
 [project]
 name = "sysmon-sdk"
-version = "0.1.1"
+version = "0.1.2"
 description = "Python SDK and CLI to interact with the sysmon daemon"
 authors = [{name="Arun Gupta", email="arun_o_gupta@gmail.com"}]
 readme = "README.md"

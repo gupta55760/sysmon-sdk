@@ -20,6 +20,14 @@ A lightweight Python system monitoring SDK and CLI that communicates with a back
 
 ---
 
+## 📦 Installation (from PyPI)
+
+You can install the package from **PyPI** using:
+
+```bash
+pip install sysmon-sdk
+
+
 ## 📦 Installation (from TestPyPI)
 
 You can install the package from **TestPyPI** using:

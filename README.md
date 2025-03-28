@@ -26,6 +26,7 @@ You can install the package from **PyPI** using:
 
 ```bash
 pip install sysmon-sdk
+```
 
 
 ## 📦 Installation (from TestPyPI)
